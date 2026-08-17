@@ -10,23 +10,23 @@ import enum
 
 
 class OrderStatus(str, enum.Enum):
-    PENDING = 'pending'
-    CONFIRMED = 'confirmed'
-    PROCESSING = 'processing'
-    SHIPPED = 'shipped'
-    OUT_FOR_DELIVERY = 'out_for_delivery'
-    DELIVERED = 'delivered'
-    CANCELLED = 'cancelled'
-    REFUNDED = 'refunded'
-    FAILED = 'failed'
+    PENDING = 'PENDING'
+    CONFIRMED = 'CONFIRMED'
+    PROCESSING = 'PROCESSING'
+    SHIPPED = 'SHIPEED'
+    OUT_FOR_DELIVERY = 'OUT_FOR_DELIVERY'
+    DELIVERED = 'DELIVERED'
+    CANCELLED = 'CANCELLED'
+    REFUNDED = 'REFUNDED'
+    FAILED = 'FAILED'
 
 
 class PaymentStatus(str, enum.Enum):
-    PENDING = 'pending'
-    PAID = 'paid'
-    FAILED = 'failed'
-    REFUNDED = 'refunded'
-    PARTIALLY_REFUNDED = 'partially_refunded'
+    PENDING = 'PENDING'
+    PAID ='PAID'
+    FAILED = 'FAILED'
+    REFUNDED = 'REFUNDED'
+    PARTIALLY_REFUNDED = 'PARTIALLY_REFUNDED'
 
 
 class Order(db.Model):

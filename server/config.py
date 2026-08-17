@@ -40,8 +40,10 @@ class BaseConfig:
     DB_NAME = os.environ.get('DB_NAME', 'shopsmart_ai')
 
     SQLALCHEMY_DATABASE_URI = (
-      f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}"
-      f"@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+        f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}"
+        f"@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+        f"?ssl_ca={os.path.join(os.path.dirname(__file__), 'ca.pem')}"
+        f"&ssl_check_hostname=true"
     )
     
     SQLALCHEMY_TRACK_MODIFICATIONS = False
