@@ -3,12 +3,6 @@
 -- MySQL 8.0+ | 3NF Normalized | Production-Ready
 -- ============================================================
 
-CREATE DATABASE IF NOT EXISTS shopsmart_ai
-  CHARACTER SET utf8mb4
-  COLLATE utf8mb4_unicode_ci;
-
-USE shopsmart_ai;
-
 -- ============================================================
 -- TABLE: admins
 -- ============================================================
@@ -29,7 +23,7 @@ CREATE TABLE IF NOT EXISTS admins (
 -- TABLE: users
 -- ============================================================
 CREATE TABLE IF NOT EXISTS users (
-    id                INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     name              VARCHAR(100) NOT NULL,
     email             VARCHAR(150) NOT NULL UNIQUE,
     password_hash     VARCHAR(255) NOT NULL,
@@ -51,8 +45,8 @@ CREATE TABLE IF NOT EXISTS users (
 -- TABLE: refresh_tokens
 -- ============================================================
 CREATE TABLE IF NOT EXISTS refresh_tokens (
-    id         INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    user_id    INT UNSIGNED NOT NULL,
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
     token      VARCHAR(500) NOT NULL UNIQUE,
     expires_at DATETIME NOT NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -65,7 +59,7 @@ CREATE TABLE IF NOT EXISTS refresh_tokens (
 -- ============================================================
 CREATE TABLE IF NOT EXISTS addresses (
     id           INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    user_id      INT UNSIGNED NOT NULL,
+    user_id      INT  NOT NULL,
     name         VARCHAR(100) NOT NULL,
     phone        VARCHAR(20) NOT NULL,
     address_line1 VARCHAR(255) NOT NULL,
@@ -149,7 +143,7 @@ CREATE TABLE IF NOT EXISTS products (
 -- ============================================================
 CREATE TABLE IF NOT EXISTS inventory (
     id             INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    product_id     INT UNSIGNED NOT NULL UNIQUE,
+    product_id     INT NOT NULL UNIQUE,
     quantity       INT UNSIGNED DEFAULT 0,
     reserved       INT UNSIGNED DEFAULT 0,
     low_stock_threshold INT UNSIGNED DEFAULT 10,
@@ -163,8 +157,8 @@ CREATE TABLE IF NOT EXISTS inventory (
 -- ============================================================
 CREATE TABLE IF NOT EXISTS cart (
     id         INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    user_id    INT UNSIGNED NOT NULL,
-    product_id INT UNSIGNED NOT NULL,
+    user_id    INT NOT NULL,
+    product_id INT  NOT NULL,
     quantity   INT UNSIGNED DEFAULT 1,
     color      VARCHAR(50),
     size       VARCHAR(50),
@@ -180,8 +174,8 @@ CREATE TABLE IF NOT EXISTS cart (
 -- ============================================================
 CREATE TABLE IF NOT EXISTS wishlist (
     id         INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    user_id    INT UNSIGNED NOT NULL,
-    product_id INT UNSIGNED NOT NULL,
+    user_id    INT NOT NULL,
+    product_id INT NOT NULL,
     added_at   DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE,
@@ -215,7 +209,7 @@ CREATE TABLE IF NOT EXISTS coupons (
 -- ============================================================
 CREATE TABLE IF NOT EXISTS orders (
     id               INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    user_id          INT UNSIGNED NOT NULL,
+    user_id          INT NOT NULL,
     order_number     VARCHAR(50) NOT NULL UNIQUE,
     status           ENUM('pending','confirmed','packed','shipped','out_for_delivery','delivered','cancelled','refunded') DEFAULT 'pending',
     subtotal         DECIMAL(10,2) NOT NULL,
@@ -247,7 +241,7 @@ CREATE TABLE IF NOT EXISTS orders (
 CREATE TABLE IF NOT EXISTS order_items (
     id          INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     order_id    INT UNSIGNED NOT NULL,
-    product_id  INT UNSIGNED NOT NULL,
+    product_id  INT  NOT NULL,
     product_name VARCHAR(255) NOT NULL COMMENT 'Snapshot at time of order',
     product_sku VARCHAR(100),
     thumbnail   VARCHAR(500),
@@ -286,8 +280,8 @@ CREATE TABLE IF NOT EXISTS payments (
 -- ============================================================
 CREATE TABLE IF NOT EXISTS reviews (
     id         INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    product_id INT UNSIGNED NOT NULL,
-    user_id    INT UNSIGNED NOT NULL,
+    product_id INT NOT NULL, 
+    user_id    INT NOT NULL,
     order_id   INT UNSIGNED,
     rating     TINYINT UNSIGNED NOT NULL CHECK (rating BETWEEN 1 AND 5),
     title      VARCHAR(200),
@@ -310,7 +304,7 @@ CREATE TABLE IF NOT EXISTS reviews (
 -- ============================================================
 CREATE TABLE IF NOT EXISTS notifications (
     id         INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    user_id    INT UNSIGNED NOT NULL,
+    user_id    INT NOT NULL,
     type       ENUM('order_placed','order_shipped','order_delivered','payment_success','review_approved','promo','system') NOT NULL,
     title      VARCHAR(255) NOT NULL,
     message    TEXT NOT NULL,
@@ -327,8 +321,8 @@ CREATE TABLE IF NOT EXISTS notifications (
 -- ============================================================
 CREATE TABLE IF NOT EXISTS product_views (
     id         INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    user_id    INT UNSIGNED,
-    product_id INT UNSIGNED NOT NULL,
+    user_id    INT,
+    product_id INT NOT NULL,
     session_id VARCHAR(100),
     viewed_at  DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL,

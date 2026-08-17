@@ -2,7 +2,7 @@
 -- ShopSmart AI - Seed Data
 -- ============================================================
 
-USE shopsmart_ai;
+--  USE shopsmart_ai;
 
 -- ============================================================
 -- ADMINS
@@ -12,28 +12,7 @@ INSERT INTO admins (name, email, password_hash, role) VALUES
 ('Store Manager', 'manager@shopsmart.ai', '$2b$12$LQv3c1yqBWVHxkd0LHAkCOYz6TiGma.8F2n3uG2aGkP.PvOE6mKS2', 'manager');
 -- Password for both: Admin@1234
 
--- ============================================================
--- CATEGORIES
--- ============================================================
-INSERT INTO categories (name, slug, description, image_url, sort_order) VALUES
-('Electronics',    'electronics',   'Laptops, Phones, Gadgets',                   'https://images.unsplash.com/photo-1498049794561-7780e7231661?w=400', 1),
-('Fashion',        'fashion',       'Clothes, Shoes, Accessories',                'https://images.unsplash.com/photo-1445205170230-053b83016050?w=400', 2),
-('Sports',         'sports',        'Fitness, Sports Equipment, Outdoor',         'https://images.unsplash.com/photo-1517649763962-0c623066013b?w=400', 3),
-('Home & Kitchen', 'home-kitchen',  'Appliances, Furniture, Decor',               'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400', 4),
-('Books',          'books',         'Fiction, Non-Fiction, Education',            'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400', 5),
-('Beauty',         'beauty',        'Skincare, Makeup, Grooming',                 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=400', 6),
-('Gaming',         'gaming',        'Consoles, Games, Accessories',               'https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=400', 7),
-('Toys & Baby',   'toys-baby',     'Toys, Baby Products, Educational',           'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400', 8);
 
--- Sub-categories
-INSERT INTO categories (name, slug, parent_id, sort_order) VALUES
-('Laptops',       'laptops',       1, 1),
-('Smartphones',   'smartphones',   1, 2),
-('Headphones',    'headphones',    1, 3),
-('Cameras',       'cameras',       1, 4),
-('Men Fashion',   'men-fashion',   2, 1),
-('Women Fashion', 'women-fashion', 2, 2),
-('Footwear',      'footwear',      2, 3);
 
 -- ============================================================
 -- SAMPLE USER
@@ -48,7 +27,7 @@ INSERT INTO users (name, email, password_hash, phone, is_email_verified, is_acti
 -- PRODUCTS - Electronics: Laptops
 -- ============================================================
 INSERT INTO products (category_id, name, slug, description, short_description, brand, sku, price, original_price, discount_percent, stock, low_stock_alert, images, thumbnail, tags, specifications, is_active, is_featured, is_new_arrival) VALUES
-(9, 'Dell Inspiron 15 Gaming Laptop', 'dell-inspiron-15-gaming',
+(1, 'Dell Inspiron 15 Gaming Laptop', 'dell-inspiron-15-gaming',
  'Powerful gaming laptop with Intel Core i7 12th Gen processor, NVIDIA RTX 3050 graphics, 16GB DDR5 RAM and 512GB NVMe SSD. Perfect for gaming, content creation and professional work.',
  'Intel i7, RTX 3050, 16GB RAM, 512GB SSD - Under ₹60,000',
  'Dell', 'DELL-INS-15-001', 58999.00, 74999.00, 21.34, 25, 5,
@@ -58,7 +37,7 @@ INSERT INTO products (category_id, name, slug, description, short_description, b
  '{"Processor":"Intel Core i7-12650H","RAM":"16GB DDR5","Storage":"512GB NVMe SSD","Display":"15.6 inch FHD 144Hz","Graphics":"NVIDIA RTX 3050 4GB","Battery":"54WHr","OS":"Windows 11 Home","Weight":"2.1 kg"}',
  TRUE, TRUE, FALSE),
 
-(9, 'ASUS VivoBook 15 Laptop', 'asus-vivobook-15',
+(1, 'ASUS VivoBook 15 Laptop', 'asus-vivobook-15',
  'Slim and lightweight laptop for everyday use. Powered by AMD Ryzen 5 5500U with Radeon graphics, 8GB RAM and 512GB SSD. Ideal for students and professionals.',
  'AMD Ryzen 5, 8GB RAM, 512GB SSD - Best Value',
  'ASUS', 'ASUS-VB15-001', 42999.00, 52999.00, 18.87, 40, 10,
@@ -68,7 +47,7 @@ INSERT INTO products (category_id, name, slug, description, short_description, b
  '{"Processor":"AMD Ryzen 5 5500U","RAM":"8GB DDR4","Storage":"512GB SSD","Display":"15.6 inch FHD","Graphics":"AMD Radeon Integrated","Battery":"42WHr","OS":"Windows 11 Home","Weight":"1.8 kg"}',
  TRUE, FALSE, FALSE),
 
-(9, 'MacBook Air M2', 'macbook-air-m2',
+(1, 'MacBook Air M2', 'macbook-air-m2',
  'The all-new MacBook Air with Apple M2 chip delivers incredible performance and up to 18 hours of battery life. Ultra-thin design with stunning Liquid Retina display.',
  'Apple M2 chip, 8GB RAM, 256GB SSD, 18hr battery',
  'Apple', 'APPLE-MBA-M2-001', 114900.00, 124900.00, 8.01, 15, 3,
@@ -78,7 +57,7 @@ INSERT INTO products (category_id, name, slug, description, short_description, b
  '{"Processor":"Apple M2","RAM":"8GB Unified Memory","Storage":"256GB SSD","Display":"13.6 inch Liquid Retina","Battery":"Up to 18 hours","OS":"macOS Ventura","Weight":"1.24 kg"}',
  TRUE, TRUE, TRUE),
 
-(9, 'HP Pavilion x360 2-in-1', 'hp-pavilion-x360-2in1',
+(1, 'HP Pavilion x360 2-in-1', 'hp-pavilion-x360-2in1',
  'Versatile 2-in-1 laptop that transforms from laptop to tablet. Intel Core i5 12th Gen, 8GB RAM, 512GB SSD with touchscreen display.',
  'Intel i5, 8GB RAM, 512GB SSD, Touch 2-in-1 Convertible',
  'HP', 'HP-PAV-X360-001', 54999.00, 64999.00, 15.39, 20, 5,
@@ -92,7 +71,7 @@ INSERT INTO products (category_id, name, slug, description, short_description, b
 -- PRODUCTS - Electronics: Smartphones
 -- ============================================================
 INSERT INTO products (category_id, name, slug, description, short_description, brand, sku, price, original_price, discount_percent, stock, low_stock_alert, images, thumbnail, tags, specifications, colors, is_active, is_featured) VALUES
-(10, 'Samsung Galaxy S24 Ultra', 'samsung-galaxy-s24-ultra',
+(2, 'Samsung Galaxy S24 Ultra', 'samsung-galaxy-s24-ultra',
  'The pinnacle of Samsung innovation with S Pen, 200MP camera, Snapdragon 8 Gen 3 and titanium design. Ultimate productivity and creativity smartphone.',
  '200MP Camera, S Pen, Snapdragon 8 Gen 3, 12GB RAM',
  'Samsung', 'SAM-S24U-001', 134999.00, 149999.00, 10.00, 20, 5,
@@ -103,7 +82,7 @@ INSERT INTO products (category_id, name, slug, description, short_description, b
  '["Titanium Black","Titanium Gray","Titanium Violet","Titanium Yellow"]',
  TRUE, TRUE),
 
-(10, 'iPhone 15 Pro Max', 'iphone-15-pro-max',
+(2, 'iPhone 15 Pro Max', 'iphone-15-pro-max',
  'Apple iPhone 15 Pro Max with A17 Pro chip, titanium design, ProRAW camera system and USB-C. Experience the most powerful iPhone ever made.',
  'A17 Pro chip, 48MP Camera, Titanium Design, USB-C',
  'Apple', 'APPLE-IP15PM-001', 159900.00, 174900.00, 8.58, 12, 3,
@@ -114,7 +93,7 @@ INSERT INTO products (category_id, name, slug, description, short_description, b
  '["Natural Titanium","Blue Titanium","White Titanium","Black Titanium"]',
  TRUE, TRUE),
 
-(10, 'OnePlus 12R 5G', 'oneplus-12r-5g',
+(2, 'OnePlus 12R 5G', 'oneplus-12r-5g',
  'Flagship killer from OnePlus with Snapdragon 8 Gen 2, 50MP triple camera, 80W SUPERVOOC charging and OxygenOS 14 for a smooth experience.',
  'Snapdragon 8 Gen 2, 50MP Camera, 80W Charging, 8GB RAM',
  'OnePlus', 'OP-12R-001', 39999.00, 49999.00, 20.00, 35, 8,
@@ -125,7 +104,7 @@ INSERT INTO products (category_id, name, slug, description, short_description, b
  '["Iron Gray","Cool Blue"]',
  TRUE, FALSE),
 
-(10, 'Redmi Note 13 Pro+', 'redmi-note-13-pro-plus',
+(2, 'Redmi Note 13 Pro+', 'redmi-note-13-pro-plus',
  'Feature-packed mid-range phone with 200MP camera, Dimensity 7200 Ultra, 120W HyperCharge. Incredible value for money smartphone.',
  '200MP Camera, 120W HyperCharge, 12GB RAM, AMOLED',
  'Xiaomi', 'REDMI-N13PP-001', 31999.00, 37999.00, 15.79, 50, 10,
@@ -180,7 +159,7 @@ INSERT INTO products (category_id, name, slug, description, short_description, b
 -- PRODUCTS - Headphones
 -- ============================================================
 INSERT INTO products (category_id, name, slug, description, short_description, brand, sku, price, original_price, discount_percent, stock, images, thumbnail, tags, specifications, colors, is_active, is_featured) VALUES
-(11, 'Sony WH-1000XM5 Headphones', 'sony-wh-1000xm5',
+(5, 'Sony WH-1000XM5 Headphones', 'sony-wh-1000xm5',
  'Industry-leading noise cancellation with HD sound. Dual Noise Sensor technology, precise voice pickup, and up to 30-hour battery. Premium over-ear wireless headphones.',
  'Industry-best ANC, 30hr battery, Hi-Res Audio',
  'Sony', 'SONY-XM5-001', 29990.00, 34990.00, 14.29, 20,
@@ -191,7 +170,7 @@ INSERT INTO products (category_id, name, slug, description, short_description, b
  '["Midnight Black","Platinum Silver"]',
  TRUE, TRUE),
 
-(11, 'boAt Rockerz 550 Wireless', 'boat-rockerz-550',
+(5, 'boAt Rockerz 550 Wireless', 'boat-rockerz-550',
  'Premium over-ear wireless headphones with 20 hours battery, 40mm dynamic drivers and foldable design. Best value wireless headphones in India.',
  '20hr Battery, 40mm Drivers, Deep Bass, Foldable',
  'boAt', 'BOAT-R550-001', 1299.00, 2999.00, 56.69, 100,
@@ -206,7 +185,7 @@ INSERT INTO products (category_id, name, slug, description, short_description, b
 -- PRODUCTS - Home & Kitchen
 -- ============================================================
 INSERT INTO products (category_id, name, slug, description, short_description, brand, sku, price, original_price, discount_percent, stock, images, thumbnail, tags, specifications, is_active) VALUES
-(4, 'Instant Pot Duo 7-in-1', 'instant-pot-duo-7in1',
+(6, 'Instant Pot Duo 7-in-1', 'instant-pot-duo-7in1',
  '7-in-1 multi-use programmable pressure cooker, slow cooker, rice cooker, steamer, sauté pan, food warmer, and yogurt maker. 6 quart capacity.',
  '7-in-1 Multifunctional, Pressure Cooker, 6 Quart',
  'Instant Pot', 'INSTPOT-DUO-001', 8499.00, 10999.00, 22.73, 30,
@@ -216,7 +195,7 @@ INSERT INTO products (category_id, name, slug, description, short_description, b
  '{"Capacity":"6 Quart","Functions":"7 in 1","Power":"1000W","Programs":"13 Smart Programs","Safety":"10+ Safety Mechanisms"}',
  TRUE),
 
-(4, 'Dyson V12 Detect Slim Vacuum', 'dyson-v12-detect-slim',
+(6, 'Dyson V12 Detect Slim Vacuum', 'dyson-v12-detect-slim',
  'Powerful cordless vacuum with laser dust detection, HEPA filtration and up to 60 minutes of run time. Automatically adapts suction power to different floor types.',
  'Laser Detect, 60min Runtime, HEPA Filter, Cordless',
  'Dyson', 'DYSON-V12-001', 49900.00, 54900.00, 9.11, 10,
@@ -230,7 +209,7 @@ INSERT INTO products (category_id, name, slug, description, short_description, b
 -- PRODUCTS - Gaming
 -- ============================================================
 INSERT INTO products (category_id, name, slug, description, short_description, brand, sku, price, original_price, discount_percent, stock, images, thumbnail, tags, specifications, is_active, is_featured) VALUES
-(7, 'Sony PlayStation 5', 'sony-playstation-5',
+(4, 'Sony PlayStation 5', 'sony-playstation-5',
  'Experience lightning-fast loading with an ultra-high speed SSD, deeper immersion with support for haptic feedback, adaptive triggers and 3D Audio. Play the greatest PS5 games.',
  'Ultra-HD Blu-ray, 825GB SSD, Haptic Feedback, 4K Gaming',
  'Sony', 'SONY-PS5-001', 54990.00, 59990.00, 8.34, 8,
@@ -240,7 +219,7 @@ INSERT INTO products (category_id, name, slug, description, short_description, b
  '{"CPU":"AMD Zen 2 8-core 3.5GHz","GPU":"AMD RDNA 2 10.28 TFLOPS","RAM":"16GB GDDR6","Storage":"825GB SSD","Optical Drive":"Ultra HD Blu-ray","Resolution":"Up to 8K"}',
  TRUE, TRUE),
 
-(7, 'Razer BlackWidow V3 Mechanical Keyboard', 'razer-blackwidow-v3',
+(4, 'Razer BlackWidow V3 Mechanical Keyboard', 'razer-blackwidow-v3',
  'Iconic mechanical gaming keyboard with Razer Green Switches, Razer Chroma RGB, and tactile feedback for satisfying gaming performance.',
  'Razer Green Switches, Chroma RGB, Tactile & Clicky',
  'Razer', 'RAZER-BW3-001', 8999.00, 11999.00, 25.01, 25,
