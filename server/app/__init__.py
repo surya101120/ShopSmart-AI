@@ -41,6 +41,7 @@ def create_app(config_class=None):
                 "http://127.0.0.1:5175",
                 "http://localhost:5177",
                 "http://127.0.0.1:5177",
+                "https://shop-smart-ai-seven.vercel.app",
             ],
             "methods": ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
             "allow_headers": ["Content-Type", "Authorization", "X-Requested-With"],
