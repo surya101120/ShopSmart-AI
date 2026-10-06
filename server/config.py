@@ -39,11 +39,16 @@ class BaseConfig:
     DB_PORT = os.environ.get('DB_PORT', '3306')
     DB_NAME = os.environ.get('DB_NAME', 'shopsmart_ai')
 
+    _is_remote_db = DB_HOST not in ('localhost', '127.0.0.1')
+    _ssl_suffix = (
+        f"?ssl_ca={os.path.join(os.path.dirname(__file__), 'ca.pem')}"
+        f"&ssl_check_hostname=true"
+        if _is_remote_db else ""
+    )
     SQLALCHEMY_DATABASE_URI = (
         f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}"
         f"@{DB_HOST}:{DB_PORT}/{DB_NAME}"
-        f"?ssl_ca={os.path.join(os.path.dirname(__file__), 'ca.pem')}"
-        f"&ssl_check_hostname=true"
+        f"{_ssl_suffix}"
     )
     
     SQLALCHEMY_TRACK_MODIFICATIONS = False

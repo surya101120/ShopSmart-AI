@@ -241,8 +241,8 @@ def track_order(order_number):
         "success": True,
         "data": {
             "order_number": order.order_number,
-            "status": order.status,
-            "payment_status": order.payment_status,
+            "status": order.status.value if order.status else None,
+            "payment_status": order.payment_status.value if order.payment_status else None,
             "created_at": order.created_at.isoformat() if order.created_at else None,
             "estimated_delivery": order.estimated_delivery.isoformat() if order.estimated_delivery else None,
             "tracking_number": order.tracking_number,

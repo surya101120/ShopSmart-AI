@@ -105,6 +105,7 @@ class User(db.Model):
             'email': self.email,
             'phone': self.phone,
             'avatar_url': self.avatar_url,
+            'role': self.role,
             'is_email_verified': self.is_email_verified,
             'is_active': self.is_active,
             'last_login': self.last_login.isoformat() if self.last_login else None,

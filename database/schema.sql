@@ -29,6 +29,7 @@ CREATE TABLE IF NOT EXISTS users (
     password_hash     VARCHAR(255) NOT NULL,
     phone             VARCHAR(20),
     avatar_url        VARCHAR(500),
+    role              VARCHAR(20) NOT NULL DEFAULT 'user',
     is_email_verified BOOLEAN DEFAULT FALSE,
     is_active         BOOLEAN DEFAULT TRUE,
     email_verify_token VARCHAR(255),
